@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: flask-app-pod
+spec:
+  containers:
+  - name: flask-app
+    image: cosminionita/flask-app:1.0.4
+    ports:
+    - name: http
+      containerPort: 8080
+    lifecycle:
+      postStart:
+        exec:
+          command: ["/bin/sh", "-c", "echo Hello from the postStart handler > file.txt"]
+      preStop:
+        exec:
+          command: ["/bin/sh","-c","curl \"https://webhook.site/5550623a-b64f-4e5b-b481-200a9bb44c57?fromPreStopHook=true\""]

@@ -1,0 +1,27 @@
+============================================================
+1. Show the app and the service
+2. Apply the service
+3. Change the labels to see the selector
+4. Test the conectivity between one pod new and the service
+5. Show Load Balancing between pods
+6. Show the DNS resolving
+
+============================================================
+
+1. Show the NodePort service presentation
+2. Show the NP service manifest
+3. Show the access using (tunnelling)
+minikube service flask-app-node-port-service --url
+4. Show the access using a container in the same docker net as minikube nodes
+
+============================================================
+
+1. Show the LoadBalancer service presentation
+2. Show the LB service manifest
+3. Power the tunnel and show the connection
+
+============================================================
+
+1. Show the headless service manifest
+2. Show show the connection working
+3. Explain the use-cases

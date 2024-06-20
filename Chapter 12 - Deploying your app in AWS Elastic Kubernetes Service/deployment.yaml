@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: flask-app
+  template:
+    metadata:
+      labels:
+        app-name: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: cosminionita/flask-app:1.0.9
+        ports: 
+          - containerPort: 8080
+            name: main-port

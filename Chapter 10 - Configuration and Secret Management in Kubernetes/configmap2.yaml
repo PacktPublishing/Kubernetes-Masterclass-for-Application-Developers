@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap
+data:
+  my-data1.json: |
+    {
+      "key5": "value5"
+    }
+  application.properties: |
+    config1=alfa
+    config2:beta

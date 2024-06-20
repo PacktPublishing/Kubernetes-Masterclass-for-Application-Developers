@@ -1,0 +1,10 @@
+
+  startingDeadlineSeconds: 300
+
+  concurrencyPolicy: Forbid
+
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 5
+
+
+  

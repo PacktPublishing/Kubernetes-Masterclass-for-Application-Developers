@@ -1,0 +1,6 @@
+kubectl explain pods
+kubectl create namespace test
+kubectl config set-context --current --namespace=test
+kubectl run nginx --image=nginx
+kubectl create -f pod.yaml
+kubectl port-forward <POD> 8080:80

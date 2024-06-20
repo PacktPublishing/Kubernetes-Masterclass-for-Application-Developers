@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job
+spec:
+
+  backoffLimit: 4
+  activeDeadlineSeconds: 200
+
+  completions: 5
+  parallelism: 5
+
+  completionMode: "Indexed"
+  backoffLimitPerIndex: 4
+  maxFailedIndexes: 4
+
+  successPolicy:
+    rules:
+      - succeededIndexes: 0,2,3
+        succeededCount: 2
+
+  template:
+    spec:
+      containers:
+      - name: sleeper
+        image: busybox
+        command: ["sleep", "4"]
+      restartPolicy: OnFailure

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app-deployment
+  annotations:
+    kubernetes.io/change-cause: "Update image to 1.0.5-new"
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 3
+      maxSurge: 10
+  revisionHistoryLimit: 5
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: flask-app
+  template:
+    metadata:
+      labels:
+        app-name: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: cosminionita/flask-app:1.0.6

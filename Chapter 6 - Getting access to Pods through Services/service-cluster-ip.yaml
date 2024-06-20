@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: flask-app-cluster-ip-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: flask-simple-api
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    protocol: TCP 

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: flask-app-red-2
+ labels:
+  color: red
+spec:
+  containers:
+  - name: flask-app
+    image: cosminionita/flask-app:1.0.6

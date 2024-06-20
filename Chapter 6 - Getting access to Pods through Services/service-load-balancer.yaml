@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: flask-app-load-balancer-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: flask-simple-api
+  ports:
+  - name: http
+    port: 8082
+    nodePort: 30101
+    targetPort: 8080
+    protocol: TCP 

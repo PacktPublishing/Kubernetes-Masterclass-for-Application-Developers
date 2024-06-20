@@ -1,0 +1,16 @@
+env:
+          - name: MY_DB_ENDPOINT
+            valueFrom:
+              configMapKeyRef:
+                name: db-endpoints-config-map
+                key: DB_ENDPOINT
+
+
+volumeMounts:
+        - name: config
+          mountPath: "/ui-config"
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: ui-configmap

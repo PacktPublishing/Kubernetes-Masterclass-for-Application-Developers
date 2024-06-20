@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app-name: my-app
+  template:
+    metadata:
+      labels:
+        app-name: my-app
+    spec:
+      volumes:
+      - name: shared-volume
+        persistentVolumeClaim:
+          claimName: volume-claim
+      containers:
+      - name: producer
+        image: busybox
+        command: ['sh', '-c', 'sleep 1000']
+        volumeMounts:
+          - name: shared-volume
+            mountPath: "/producer-dir"
+      - name: consumer
+        image: busybox
+        command: ['sh', '-c', 'sleep 1000']
+        volumeMounts:
+          - name: shared-volume
+            mountPath: "/consumer-dir"
+        
+

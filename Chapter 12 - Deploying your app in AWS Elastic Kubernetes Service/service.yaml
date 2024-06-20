@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-lb
+  namespace: default
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: external 
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-name: global-nlb
+spec:
+  type: LoadBalancer
+  ports:
+  - name: ingress-port
+    port: 80
+    protocol: TCP
+    targetPort: main-port
+  selector:
+    app-name: flask-app

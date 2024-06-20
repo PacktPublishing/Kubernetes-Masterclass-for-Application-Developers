@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app-name: my-app
+  template:
+    metadata:
+      labels:
+        app-name: my-app
+    spec:
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: secret-sample
+      containers:
+      - name: my-app
+        image: cosminionita/flask-app:1.0.6
+        volumeMounts:
+          - name: secret-volume
+            mountPath: "/my-secret-data"
+        env:
+          - name: MY_SECRET_PASS
+            valueFrom:
+              secretKeyRef:
+                name: secret-sample
+                key: my-key
+
